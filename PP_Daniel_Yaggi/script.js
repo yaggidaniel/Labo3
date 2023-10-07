@@ -485,21 +485,21 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Obtén los valores de los campos del formulario de vehículos terrestres
       const id = formularioTerrestre.idTerrestre.value;
-      const modelo = formularioTerrestre.modeloTerrestre.value;
-      const anoFab = formularioTerrestre.anoFabTerrestre.value;
-      const velMax = formularioTerrestre.velMaxTerrestre.value;
-      const cantRue = formularioTerrestre.cantRueTerrestre.value;
-      const cantPue = formularioTerrestre.cantPueTerrestre.value;
+      const modelo = formularioTerrestre.modelo.value;
+      const anoFab = formularioTerrestre.anoFab.value;
+      const velMax = formularioTerrestre.velMax.value;
+      const cantRue = formularioTerrestre.cantRue.value;
+      const cantPue = formularioTerrestre.cantPue.value;
   
       // Limpiar mensajes de error previos y quitar la clase 'error-input'
       document.getElementById('errorMensajeTerrestre').textContent = '';
   
       const inputId = formularioTerrestre.idTerrestre;
-      const inputModelo = formularioTerrestre.modeloTerrestre;
-      const inputAnoFab = formularioTerrestre.anoFabTerrestre;
-      const inputVelMax = formularioTerrestre.velMaxTerrestre;
-      const inputCantRue = formularioTerrestre.cantRueTerrestre;
-      const inputCantPue = formularioTerrestre.cantPueTerrestre;
+      const inputModelo = formularioTerrestre.modelo;
+      const inputAnoFab = formularioTerrestre.anoFab;
+      const inputVelMax = formularioTerrestre.velMax;
+      const inputCantRue = formularioTerrestre.cantRue;
+      const inputCantPue = formularioTerrestre.cantPue;
   
       inputId.classList.remove('error-input');
       inputModelo.classList.remove('error-input');
@@ -539,16 +539,27 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('errorMensajeTerrestre').textContent += 'La cantidad de puertas debe ser un número mayor a cero.';
         inputCantPue.classList.add('error-input');
       } else {
-        // Crear la instancia de Terrestre aquí
-        const terrestreNuevo = new Terrestre(
-          id,
-          modelo,
-          anoFab,
-          velMax,
-          cantRue,
-          cantPue
-        );
-        terrestre.push(terrestreNuevo);
+
+
+        if (itemEditado) {
+          itemEditado.id = id;
+          itemEditado.modelo = modelo;
+          itemEditado.anoFab = anoFab;
+          itemEditado.velMax = velMax;
+          itemEditado.cantRue = cantRue;
+          itemEditado.cantPue = cantPue;
+        } else {
+          try {
+            let nuevoId = 1;
+            while (terrestres.some(vehiculo => vehiculo.id === nuevoId)) {
+              nuevoId++;
+            }
+            const nuevoTerrestre = new Terrestre(id, modelo, anoFab, velMax, cantRue, cantPue);
+            terrestres.push(nuevoTerrestre);
+          } catch (error) {
+            document.getElementById('errorMensajeTerrestre').textContent = error.message;
+          }
+        }
         // Resto del código para actualizar la tabla y limpiar el formulario
         resetAfterForm('terrestre');
       }
