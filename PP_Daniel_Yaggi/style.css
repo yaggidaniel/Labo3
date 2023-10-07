@@ -1,0 +1,40 @@
+.data, .abm, form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+#btnAgregar {
+  margin-top: 20px;
+}
+
+.formItem {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+th {
+  background-color: #94b0df;
+}
+.controles {
+  margin-bottom: 20px;
+}
+.hidden {
+  display: none;
+}
+
+.error-input {
+  border: 1px solid red;
+}

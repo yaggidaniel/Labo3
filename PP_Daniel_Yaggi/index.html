@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primer Parcial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="data">
+    <h1>Lista de Datos</h1>
+    <div class="controles">
+      <label for="filtro">Filtrar por:</label>
+      <select id="filtro">
+          <option value="terrestre">Terrestre</option>
+          <option value="aereo"selected>Aereo</option>
+      </select>
+      <div id="calcularPromedioContainer">
+        <label for="calcularPromedio">Calcular velocidad promedio:</label>
+        <button id="btnCalcularPromedio" style="margin-right: 10px;">Calcular</button>
+        <span id="resultadoPromedioVehiculos" style="color: green;"></span>
+      </div>
+      <div id="checks">
+        <label>Columnas a mostrar:</label>
+        <input type="checkbox" id="chkId" checked> <label for="chkId">ID</label>
+        <input type="checkbox" id="chkModelo" checked> <label for="chkModelo">Modelo</label>
+        <input type="checkbox" id="chkAnoFab" checked> <label for="chkAnoFab">Año Fabricación</label>
+        <input type="checkbox" id="chkVelMax" checked> <label for="chkVelMax">Vel. Max</label>
+      </div>
+    </div>
+    <table>
+        <thead>
+            <tr id="cabecera">
+            </tr>
+        </thead>
+        <tbody id="tablaData">
+        </tbody>
+    </table>
+
+    <input id="btnAgregar" type="button" value="Agregar Fila">
+  </div>
+  <input type="hidden" name="id" id="id">
+  <div class="abm hidden" id="aereo">
+    <h2>Formulario ABM Aereo</h2>
+    <form id="formularioAereo">
+      <div class="formItem">
+        <label for="idAereo">ID:</label>
+        <input type="number" id="idAereo" required>
+      </div>
+      <div class="formItem">
+        <label for="modeloAereo">Modelo:</label>
+        <input type="text" id="modeloAereo" required>
+      </div>
+      <div class="formItem">
+        <label for="anoFabAereo">Año de fabricación:</label>
+        <input type="number" id="anoFabAereo" required>
+      </div>
+      <div class="formItem">
+        <label for="velMaxAereo">Velocidad máxima:</label>
+        <input type="number" id="velMaxAereo" required>
+      </div>
+      <div class="formItem">
+        <label for="altMaxAereo">Altitud máxima:</label>
+        <input type="number" id="altMaxAereo" required>
+      </div>
+      <div class="formItem">
+        <label for="autonomiaAereo">Autonomia:</label>
+        <input type="number" id="autonomiaAereo" required>
+      </div>
+    </form>
+    <div class="controles">
+      <button id="btnAddAereo">Guardar</button>
+      <button id="bntDeleteAereo">Eliminar</button>
+      <button id="cancelarAereo">Cancelar</button>
+    </div>
+    <div id="errorMensajeAereo" style="color: red;"></div> 
+  </div>
+
+  <div class="abm hidden" id="terrestre">
+    <h2>Formulario ABM Terrestre</h2>
+    <form id="formularioTerrestre">
+      <div class="formItem">
+        <label for="idTerrestre">ID:</label>
+        <input type="number" id="idTerrestre" required>
+      </div>
+      <div class="formItem">
+        <label for="modeloTerrestre">Modelo:</label>
+        <input type="text" id="modeloTerrestre" required>
+      </div>
+      <div class="formItem">
+        <label for="anoFabTerrestre">Año de fabricación:</label>
+        <input type="number" id="anoFabTerrestre" required>
+      </div>
+      <div class="formItem">
+        <label for="velMaxTerrestre">Velocidad máxima:</label>
+        <input type="number" id="velMaxTerrestre" required>
+      </div>
+      <div class="formItem">
+        <label for="cantRueTerrestre">Cantidad de ruedas:</label>
+        <input type="number" id="cantRueTerrestre" required>
+      </div>
+      <div class="formItem">
+        <label for="cantPueTerrestre">Cantidad de puertas:</label>
+        <input type="number" id="cantPueTerrestre" required>
+      </div>
+    </form>
+    <div class="controles">
+      <button id="btnAddTerrestre">Guardar</button>
+      <button id="bntDeleteTerrestre">Eliminar</button>
+      <button id="cancelarTerrestre">Cancelar</button>
+    </div>
+    <div id="errorMensajeTerrestre" style="color: red;"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
