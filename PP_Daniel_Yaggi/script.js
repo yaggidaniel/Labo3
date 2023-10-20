@@ -19,16 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   class Aereo extends Vehiculo {
     constructor(id, modelo, anoFab, velMax, altMax, autonomia) {
       super(id, modelo, anoFab, velMax);
-
-      if (typeof altMax !== 'number' || altMax <= 0) {
-        throw new Error('La altitud máxima debe ser un número mayor a cero.');
-      }
-
-      if (typeof autonomia !== 'number' || autonomia <= 0) {
-        throw new Error('La autonomía debe ser un número mayor a cero.');
-      }
-
-      this.altMax = altMax;
+      console.log("estoy viendo algo ", altMax);
+      this.altMax = Number(altMax);
       this.autonomia = autonomia;
     }
 
@@ -66,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  
   const aereo = [];
   const terrestre = [];
 
@@ -99,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "modelo": "Aprilia RSV 1000 R",
       "anoFab": 2004,
       "velMax": 280,
-      "cantPue": 0,
+      "cantPue": 1,
       "cantRue": 2
     },
     {
@@ -145,6 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const formAereo = document.getElementById('aereo');
   const formTerrestre = document.getElementById('terrestre');
   const btnAgregar = document.getElementById('btnAgregar');
+  const btnCalcularPromedio = document.getElementById('btnCalcularPromedio');
+  const resultadoPromedioVehiculos = document.getElementById('resultadoPromedioVehiculos');
+
 
   const formularioAereo = document.getElementById('formularioAereo');
   const formularioTerrestre = document.getElementById('formularioTerrestre');
@@ -483,6 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnAddTerrestre.addEventListener('click', (e) => {
       e.preventDefault();
       
+      
       // Obtén los valores de los campos del formulario de vehículos terrestres
       const id = formularioTerrestre.idTerrestre.value;
       const modelo = formularioTerrestre.modelo.value;
@@ -576,6 +573,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+  
+  
 
   if (bntDeleteTerrestre) {
     bntDeleteTerrestre.addEventListener('click', () => {
@@ -587,6 +586,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  
   if (filtro) {
     filtro.addEventListener('change', () => {
       resetTable();
@@ -599,4 +600,19 @@ document.addEventListener('DOMContentLoaded', () => {
   armarCabecera('aereo');
   agregarFilas('aereo');
   setChecks('aereo');
+});
+
+btnCalcularPromedio.addEventListener("click", function () {
+  let promedio;
+  if (filtro.value === 'aereo') 
+  {
+  promedio = aereo.reduce((suma, item) => suma + item?.velMax, 0) / aereo.length;
+  } 
+  else if (filtro.value === 'terrestre')
+  {
+    promedio = terrestre.reduce((suma, item) => suma + item?.velMax, 0) / terrestre.length;
+  } else {
+    promedio = 0; // Valor predeterminado si no se cumple ninguna condición
+  }
+resultadoPromedioVehiculos.innerHTML = `El promedio de velocidad es: ${promedio}`;
 });
