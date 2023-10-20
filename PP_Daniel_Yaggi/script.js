@@ -600,19 +600,16 @@ document.addEventListener('DOMContentLoaded', () => {
   armarCabecera('aereo');
   agregarFilas('aereo');
   setChecks('aereo');
-});
 
-btnCalcularPromedio.addEventListener("click", function () {
-  let promedio;
-  if (filtro.value === 'aereo') 
-  {
-  promedio = aereo.reduce((suma, item) => suma + item?.velMax, 0) / aereo.length;
-  } 
-  else if (filtro.value === 'terrestre')
-  {
-    promedio = terrestre.reduce((suma, item) => suma + item?.velMax, 0) / terrestre.length;
+  btnCalcularPromedio.addEventListener("click", function () {
+  let promedio = 0;
+
+  if (filtro.value === 'aereo') {
+    promedio = aereo.reduce((suma, item) => suma + item.velMax, 0) / aereo.length;
   } else {
-    promedio = 0; // Valor predeterminado si no se cumple ninguna condición
+    promedio = terrestre.reduce((suma, item) => suma + item.velMax, 0) / terrestre.length;
   }
-resultadoPromedioVehiculos.innerHTML = `El promedio de velocidad es: ${promedio}`;
+  resultadoPromedioVehiculos.innerHTML = `El promedio de velocidad es: ${promedio}`;
+  });
+
 });
