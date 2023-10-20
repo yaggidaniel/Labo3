@@ -594,6 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setChecks(filtro.value);
       armarCabecera(filtro.value);
       agregarFilas(filtro.value);
+      resultadoPromedioVehiculos.innerHTML = '';
     });
   }
 
